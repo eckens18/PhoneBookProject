@@ -2,39 +2,49 @@ import java.util.*;
 
 public class PhoneBook {
 
-    private Map<String,String> contactBook = new TreeMap<String, String>();
+    private Map<String, String> contactBook = new TreeMap<String, String>();
 
-    public String lookupPhoneNumberFromName(String bookName){
+    public String lookupPhoneNumberFromName(String bookName) {
         return contactBook.get(bookName);
     }
 
-    public void addPhoneNumberToPhoneBook(String name, String number){
-        contactBook.put(name,number);
+    public void addPhoneNumberToPhoneBook(String name, String number) {
+        contactBook.put(name, number);
     }
 
-    public String getListOfNamesAndPhoneNumbers(){
+    public String getListOfNamesAndPhoneNumbers() {
         String listOfNamesAndNumbers = "";
-        for(Map.Entry<String,String> entry : contactBook.entrySet()) {
+        for (Map.Entry<String, String> entry : contactBook.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            listOfNamesAndNumbers += key+"\n";
-            listOfNamesAndNumbers += value+"\n";
+            listOfNamesAndNumbers += key + "\n";
+            listOfNamesAndNumbers += value + "\n";
         }
         return listOfNamesAndNumbers;
 
     }
 
-    public String getListOfPhoneNumbers(){
+    public String getListOfPhoneNumbers() {
         String listOfNamesAndNumbers = "";
-        for(Map.Entry<String,String> entry : contactBook.entrySet()) {
+        for (Map.Entry<String, String> entry : contactBook.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            listOfNamesAndNumbers += value+"\n";
+            listOfNamesAndNumbers += value + "\n";
         }
         return listOfNamesAndNumbers;
     }
 
-    public void removeEntry(String name){
+    public void removeEntry(String name) {
         contactBook.remove(name);
+    }
+
+    public String reverseLookup(String number) {
+        for (Map.Entry<String, String> entry : contactBook.entrySet()) {
+            String value = entry.getValue();
+            if (value == number) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }

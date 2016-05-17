@@ -57,4 +57,14 @@ public class PhoneBookTest {
         phoneBook.removeEntry("Derek");
         assertNull(phoneBook.lookupPhoneNumberFromName("Derek"));
     }
+
+    @Test
+    public void reverseLookupTest(){
+        String number = "5552346";
+        String name = "Sonny";
+        phoneBook.addPhoneNumberToPhoneBook(name,number);
+        String expected = "Derek";
+        String actual = phoneBook.reverseLookup("5552345");
+        assertEquals(expected,actual);
+    }
 }
